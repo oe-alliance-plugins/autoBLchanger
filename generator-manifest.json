@@ -1,0 +1,18 @@
+{
+  "branch": "main",
+  "depends_recipe": "",
+  "description_control": "automatic or manual BootlogoChanger for your E2-Box",
+  "description_recipe": "automatic or manual BootlogoChanger for your E2-Box",
+  "history_source_dir": "autoBLchanger",
+  "internal_package_name": "enigma2-plugin-extensions-autoblchanger",
+  "module_dir_name": "autoBLchanger",
+  "output_subdir": "autoBLchanger",
+  "package_name": "enigma2-plugin-extensions-autoblchanger",
+  "plugin_src_rel": "autoBLchanger",
+  "python_package": "autoBLchanger",
+  "rdepends_recipe": "",
+  "replaces": "",
+  "repo_name": "autoBLchanger",
+  "rrecommends": "",
+  "rreplaces": ""
+}
