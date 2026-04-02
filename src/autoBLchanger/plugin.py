@@ -197,7 +197,7 @@ class autoBLchanger(ConfigListScreen, Screen):  # /usr/lib/enigma2/python/Plugin
 			if exists(pix[0]):
 				self.PicLoad.setPara([self["LogosPict"].instance.size().width(), self["LogosPict"].instance.size().height(), 1, 1, 0, 1, '#00000000'])
 				self.PicLoad.startDecode(pix[0])
-				#self['LogosPict'].show()
+				# self['LogosPict'].show()
 				# move pixmap if necessary (to not mask the selection)
 				curPos = self["LogosPict"].getPosition()
 				if curPos[0] == 325:
@@ -212,9 +212,9 @@ class autoBLchanger(ConfigListScreen, Screen):  # /usr/lib/enigma2/python/Plugin
 			self['LogosPict'].hide()
 
 	def UpdatePicture(self):
-		#self.setTitle('auto BootLogo changer - %s' % (strVersionIdx))  # it is done by parsing the skin
+		# self.setTitle('auto BootLogo changer - %s' % (strVersionIdx))  # it is done by parsing the skin
 		self.PicLoad.PictureData.get().append(self.DecodePicture)
-		#self.yellow()  # show current BootLogo if one
+		# self.yellow()  # show current BootLogo if one
 
 	def DecodePicture(self, PicInfo=""):
 		ptr = self.PicLoad.getData()
