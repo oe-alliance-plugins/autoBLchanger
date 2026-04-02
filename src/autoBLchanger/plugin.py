@@ -28,7 +28,10 @@ strSelectMode = config.plugins.autoBLchanger.selectMode.value  # 0: random, 1: a
 
 def searchForFiles(directory=curdir, depth=-1, extensions=('.mvi'), prefix=''):
 	foundFiles = []
-	checkBegin = lambda swFileName: True if not prefix or directory.rstrip(sep) != strSearchPath.rstrip(sep) else swFileName.startswith(prefix)  # check beginning of file name if a specific prefix is given (by call of 'setPicture')
+
+	def checkBegin(swFileName):
+		return True if not prefix or directory.rstrip(sep) != strSearchPath.rstrip(sep) else swFileName.startswith(prefix)  # check beginning of file name if a specific prefix is given (by call of 'setPicture')
+
 	for root, dirs, files in walk(abspath(directory)):
 		if root[len(directory):].count(sep) < depth or depth < 0:  # check the directory depth to search in
 			foundFiles.extend(join(root, fileName) for fileName in files if fileName.lower().endswith(extensions) and checkBegin(fileName))  # check files with given extension(s) and/or beginning)
@@ -50,7 +53,7 @@ def getBootLogoIdx(lstBootLogos):
 	if islink(strTargetPath):  # check if existing BootLogo is a SymLink
 		try:
 			iBootLogoIdx = lstBootLogos.index(realpath(strTargetPath))  # try to find index of actual used logo
-		except:  # SymLink is maybe broken (actual logo not in list)
+		except Exception:  # SymLink is maybe broken (actual logo not in list)
 			iBootLogoIdx = -1
 	else:
 		iBootLogoIdx = -1
@@ -74,7 +77,7 @@ def autoChangeBootLogo():
 					iRandIdx = randrange(len(BLogos))
 				iLogoIdx = iRandIdx
 			symlink(BLogos[iLogoIdx], strTargetPath)  # create symLink to BootLogo
-	except:
+	except Exception:
 		pass
 
 
@@ -171,7 +174,7 @@ class autoBLchanger(ConfigListScreen, Screen):  # /usr/lib/enigma2/python/Plugin
 				else:
 					self['LogosInfo'].setText(_('... unfortunately no BootLogo available, please check:\n\'%s\'') % (strSearchPath))
 			self.setPicture(idx, str(cur[2]))
-		except:
+		except Exception:
 			self['LogosInfo'].setText('./.')
 
 	def changedEntry(self):
@@ -182,9 +185,7 @@ class autoBLchanger(ConfigListScreen, Screen):  # /usr/lib/enigma2/python/Plugin
 				self.populateConfigList()
 			elif idx == 1:
 				self.selectMode = config.plugins.autoBLchanger.selectMode.value
-			else:
-				pass
-		except:
+		except Exception:
 			pass
 
 	def setPicture(self, logoIdx, logoPath):
@@ -231,7 +232,7 @@ class autoBLchanger(ConfigListScreen, Screen):  # /usr/lib/enigma2/python/Plugin
 				symlink(self.Logos[idx], strTargetPath)  # create symLink to BootLogo
 				restartbox = self.session.openWithCallback(self.restartSTB, MessageBox, _('Your STB needs a restart to apply the new bootlogo.\nDo you want to Restart you STB now?'), MessageBox.TYPE_YESNO, default=False)
 				restartbox.setTitle(_('Restart STB'))
-		except:
+		except Exception:
 			self.session.open(MessageBox, _('Error setting BootLogo!'), MessageBox.TYPE_ERROR, timeout=4)
 
 	def yellow(self):
@@ -260,7 +261,7 @@ class autoBLchanger(ConfigListScreen, Screen):  # /usr/lib/enigma2/python/Plugin
 				self['LogosInfo'].setText(_('The original BootLogo was successfully reset...'))
 				self.CurLogoIdx = getBootLogoIdx(self.Logos)
 				self['key_yellow'].setText('')
-			except:
+			except Exception:
 				self.session.open(MessageBox, _('Error setting back original BootLogo!'), MessageBox.TYPE_ERROR, timeout=4)
 		else:
 			self['config'].setCurrentIndex(0)
