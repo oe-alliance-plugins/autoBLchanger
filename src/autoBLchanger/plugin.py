@@ -24,6 +24,7 @@ strChangeMode = config.plugins.autoBLchanger.changeMode.value  # 'man', 'aut'
 strSelectMode = config.plugins.autoBLchanger.selectMode.value  # 0: random, 1: ascending, 2: descending
 strSearchPath = config.plugins.autoBLchanger.logoPath.value
 
+
 def searchForFiles(directory=curdir, depth=-1, extensions=('.mvi'), prefix=''):
 	foundFiles = []
 

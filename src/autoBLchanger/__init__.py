@@ -13,6 +13,7 @@ strPluginName = "autoBLchanger"
 strVersionIdx = f"v{__version__}"
 strSearchPath = normpath(f"{myPluginPath}/logos") + sep
 
+
 def localeInit():
 	bindtextdomain(PluginLanguageDomain, f"{myPluginPath}/locale")
 
