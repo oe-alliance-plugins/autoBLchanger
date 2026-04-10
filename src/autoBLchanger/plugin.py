@@ -1,10 +1,9 @@
-# -*- coding: utf-8 -*-
 #######################################
 # coded by pain2000 - v1.4 (Nov 2022) #
 #  modyfied for py3 usage by Mr.Servo #
 #######################################
 
-from . import _, myPluginPath
+from . import __version__, myPluginPath, _
 from Screens.Screen import Screen
 from Screens.MessageBox import MessageBox
 from Plugins.Plugin import PluginDescriptor
@@ -15,16 +14,15 @@ from Components.Label import Label
 from Components.Pixmap import Pixmap
 from enigma import ePicLoad
 from os import curdir, walk, sep, rename, remove, symlink, system
-from os.path import normpath, abspath, realpath, join, islink, exists, lexists, dirname, splitext
+from os.path import abspath, realpath, join, islink, exists, lexists, dirname, splitext
 from random import randrange
 
-strPluginName = 'autoBLchanger'
-strVersionIdx = 'v1.4'
-strSearchPath = normpath(myPluginPath + '/logos') + sep
-strTargetPath = '/usr/share/bootlogo.mvi'
+strPluginName = "autoBLchanger"
+strVersionIdx = f"v{__version__}"
+strTargetPath = "/usr/share/bootlogo.mvi"
 strChangeMode = config.plugins.autoBLchanger.changeMode.value  # 'man', 'aut'
 strSelectMode = config.plugins.autoBLchanger.selectMode.value  # 0: random, 1: ascending, 2: descending
-
+strSearchPath = config.plugins.autoBLchanger.logoPath.value
 
 def searchForFiles(directory=curdir, depth=-1, extensions=('.mvi'), prefix=''):
 	foundFiles = []
@@ -133,12 +131,14 @@ class autoBLchanger(ConfigListScreen, Screen):  # /usr/lib/enigma2/python/Plugin
 		self.onLayoutFinish.append(self.UpdatePicture)
 
 	def populateConfigList(self):
-		self.set_changeMode = getConfigListEntry(_('BootLogo ChangeMode :'), config.plugins.autoBLchanger.changeMode, _('change the BootLogo manually or at system startup'))
-		self.set_selectMode = getConfigListEntry(_('BootLogo SelectMode :'), config.plugins.autoBLchanger.selectMode, _('order to choose the new BootLogo\n(only effective if \'ChangeMode = startup\')'))
+		set_changeMode = getConfigListEntry(_('BootLogo ChangeMode :'), config.plugins.autoBLchanger.changeMode, _('change the BootLogo manually or at system startup'))
+		set_selectMode = getConfigListEntry(_('BootLogo SelectMode :'), config.plugins.autoBLchanger.selectMode, _('order to choose the new BootLogo\n(only effective if \'ChangeMode = startup\')'))
+		set_selectPath = getConfigListEntry(_('BootLogo LogoPath :'), config.plugins.autoBLchanger.logoPath, _('change the LogoPath where Logos are stored'))
 		self.set_fake_entry = NoSave(ConfigNothing())
 		self.list = []
-		self.list.append(self.set_changeMode)
-		self.list.append(self.set_selectMode)
+		self.list.append(set_changeMode)
+		self.list.append(set_selectMode)
+		self.list.append(set_selectPath)
 		self.Logos = searchForFiles(strSearchPath, 1)
 		if self.Logos:  # BootLogos found
 			self.Logos.sort(key=str.lower)
@@ -292,7 +292,7 @@ def Plugins(**kwargs):
 		PluginDescriptor(
 			where=[PluginDescriptor.WHERE_PLUGINMENU, PluginDescriptor.WHERE_EXTENSIONSMENU],
 			name=strPluginName,
-			description=_('change the BootLogo manually or at system startup') + ' (%s)' % (strVersionIdx),
+			description=_('change the BootLogo manually or at system startup') + " ({strVersionIdx})",
 			icon='plugin.png',
 			fnc=normalStart
 		),
