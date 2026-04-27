@@ -7,7 +7,7 @@ from os.path import normpath, sep
 PluginLanguageDomain = "autoBLchanger"
 myPluginPath = resolveFilename(SCOPE_PLUGINS, f"Extensions/{PluginLanguageDomain}")
 
-__version__ = "1.5"
+__version__ = "1.6"
 
 strPluginName = "autoBLchanger"
 strVersionIdx = f"v{__version__}"

@@ -26,11 +26,10 @@ strSearchPath = config.plugins.autoBLchanger.logoPath.value
 
 
 def searchForFiles(directory=curdir, depth=-1, extensions=('.mvi'), prefix=''):
-	foundFiles = []
-
 	def checkBegin(swFileName):
 		return True if not prefix or directory.rstrip(sep) != strSearchPath.rstrip(sep) else swFileName.startswith(prefix)  # check beginning of file name if a specific prefix is given (by call of 'setPicture')
 
+	foundFiles = []
 	for root, dirs, files in walk(abspath(directory)):
 		if root[len(directory):].count(sep) < depth or depth < 0:  # check the directory depth to search in
 			foundFiles.extend(join(root, fileName) for fileName in files if fileName.lower().endswith(extensions) and checkBegin(fileName))  # check files with given extension(s) and/or beginning)
@@ -102,18 +101,25 @@ class autoBLchanger(ConfigListScreen, Screen):  # /usr/lib/enigma2/python/Plugin
 	def __init__(self, session, args=0):
 		Screen.__init__(self, session)
 		self.session = session
-		self.idxOff = 3
-		self.conOff = self.idxOff - 1
 		self.list = []
-		self.Logos = []
 		ConfigListScreen.__init__(self, self.list, session=self.session, on_change=self.changedEntry)
-		self['setupActions'] = ActionMap(['SetupActions', 'ColorActions'], {'red': self.cancel, 'cancel': self.cancel, 'green': self.save, 'yellow': self.yellow, 'blue': self.blue, 'ok': self.run}, -2)
+		self.idxOff = 4  # lenght of menu entries before first bootlogo starts in menü
+		self.conOff = self.idxOff - 1
+		self.Logos = []
+		self['LogosPict'] = Pixmap()
+		self['LogosInfo'] = Label('./.')
 		self['key_red'] = Label(_('Cancel'))
 		self['key_green'] = Label(_('Save'))
 		self['key_yellow'] = Label('')
 		self['key_blue'] = Label('')
-		self['LogosPict'] = Pixmap()
-		self['LogosInfo'] = Label('./.')
+		self['setupActions'] = ActionMap(['SetupActions', 'ColorActions'], {
+			'red': self.cancel,
+			'cancel': self.cancel,
+			'green': self.save,
+			'yellow': self.yellow,
+			'blue': self.blue,
+			'ok': self.run
+			}, -2)
 		self.changeMode = strChangeMode  # config.plugins.autoBLchanger.changeMode.value
 		self.selectMode = strSelectMode  # config.plugins.autoBLchanger.selectMode.value
 		self.CurLogoIdx = -2
