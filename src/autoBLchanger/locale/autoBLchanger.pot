@@ -1,14 +1,14 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
+# This file is distributed under the same license as the autoBLchanger package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
+"Project-Id-Version: autoBLchanger\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-11-24 20:06+0100\n"
+"POT-Creation-Date: 2026-04-27 23:37+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,95 +17,129 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
+#: ../plugin.py:152
 #, python-format
 msgid "---- found %02d BootLogo%s to select ----"
 msgstr ""
 
+#: ../plugin.py:161
 msgid "---- no BootLogos found :'( ----"
 msgstr ""
 
+#: ../plugin.py:174 ../plugin.py:254
 #, python-format
 msgid "... '%s' is currently set as BootLogo"
 msgstr ""
 
+#: ../plugin.py:176
 #, python-format
 msgid "... press 'OK' to select '%s' as new BootLogo"
 msgstr ""
 
+#: ../plugin.py:180
 #, python-format
 msgid "... there %s %02d BootLogo%s available"
 msgstr ""
 
+#: ../plugin.py:182
 #, python-format
 msgid ""
 "... unfortunately no BootLogo available, please check:\n"
 "'%s'"
 msgstr ""
 
+#: ../plugin.py:141
 msgid "BootLogo ChangeMode :"
 msgstr ""
 
+#: ../plugin.py:143
+msgid "BootLogo LogoPath :"
+msgstr ""
+
+#: ../plugin.py:142
 msgid "BootLogo SelectMode :"
 msgstr ""
 
+#: ../plugin.py:111
 msgid "Cancel"
 msgstr ""
 
+#: ../plugin.py:243
 msgid "Error setting BootLogo!"
 msgstr ""
 
+#: ../plugin.py:272
 msgid "Error setting back original BootLogo!"
 msgstr ""
 
+#: ../plugin.py:241
 msgid "Restart STB"
 msgstr ""
 
+#: ../plugin.py:112
 msgid "Save"
 msgstr ""
 
+#: ../plugin.py:268
 msgid "The original BootLogo was successfully reset..."
 msgstr ""
 
+#: ../plugin.py:240
 msgid ""
 "Your STB needs a restart to apply the new bootlogo.\n"
 "Do you want to Restart you STB now?"
 msgstr ""
 
+#: ../plugin.py:180
 msgid "are"
 msgstr ""
 
+#: ../__init__.py:32
 msgid "ascending"
 msgstr ""
 
+#: ../plugin.py:141 ../plugin.py:302
 msgid "change the BootLogo manually or at system startup"
 msgstr ""
 
+#: ../plugin.py:143
+msgid "change the LogoPath where Logos are stored"
+msgstr ""
+
+#: ../__init__.py:32
 msgid "descending"
 msgstr ""
 
+#: ../plugin.py:180
 msgid "is only"
 msgstr ""
 
+#: ../__init__.py:31
 msgid "manual"
 msgstr ""
 
+#: ../plugin.py:142
 msgid ""
 "order to choose the new BootLogo\n"
 "(only effective if 'ChangeMode = startup')"
 msgstr ""
 
+#: ../__init__.py:32
 msgid "random"
 msgstr ""
 
+#: ../plugin.py:135
 msgid ""
 "reset orig.\n"
 "BootLogo"
 msgstr ""
 
+#: ../plugin.py:132 ../plugin.py:248
 msgid ""
 "show current\n"
 "BootLogo"
 msgstr ""
 
+#: ../__init__.py:31
 msgid "startup"
 msgstr ""
